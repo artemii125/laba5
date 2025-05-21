@@ -22,7 +22,7 @@ bool check(const string& adress){
 
 void ADD(const string& name, int qty, const string& adress) {
     if (!check(adress)){
-        cout << "Неправильный адрес\n";
+        cout << "Неправильный адрес!\n";
         cout << "\n";
         return;
     }
