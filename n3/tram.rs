@@ -1,5 +1,5 @@
 use std::collections::{HashMap, HashSet};
-use std::io::{self, Write};
+use std::io::{self};
 
 struct TramManager {
     tram_to_stops: HashMap<String, Vec<String>>,
@@ -15,8 +15,12 @@ impl TramManager {
     }
 
     fn create_tram(&mut self, tram: String, stops: Vec<String>) {
+        if self.tram_to_stops.contains_key(&tram) {
+            println!("Ошибка: трамвай с номером {} уже существует.", tram);
+            return;
+        }
         if self.tram_to_stops.len() >= 1000 {
-            println!("Ошибка: достигнуто максимальное количество трамваев (1000).{}");
+            println!("Ошибка: достигнуто максимальное количество трамваев (1000).");
             return;
         }
         let mut unique_stops = Vec::new();
