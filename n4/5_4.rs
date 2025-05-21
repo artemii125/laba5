@@ -23,8 +23,9 @@ fn main() {
                 let region = parts.next().unwrap().to_string();
                 let new_center = parts.next().unwrap().to_string();
 
-                if let Some(old_center) = regions.get(&region) {
-                    if *old_center == new_center {
+                if let Some(old_center_ref) = regions.get(&region) {
+                    let old_center = old_center_ref.clone(); // клонируем, чтобы завершить immutable borrow
+                    if old_center == new_center {
                         println!("Incorrect");
                     } else {
                         regions.insert(region.clone(), new_center.clone());
